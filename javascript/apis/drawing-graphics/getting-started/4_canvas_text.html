@@ -26,14 +26,33 @@
       ctx.fillStyle = 'rgb(0,0,0)';
       ctx.fillRect(0,0,width,height);
 
-      ctx.strokeStyle = 'white';
-      ctx.lineWidth = 1;
-      ctx.font = '36px arial';
-      ctx.strokeText('Canvas text', 50, 50);
+      ctx.translate(width/2, height/2);
 
-      ctx.fillStyle = 'red';
-      ctx.font = '48px georgia';
-      ctx.fillText('Canvas text', 50, 150);
+      function degToRad(degrees) {
+        return degrees * Math.PI / 180;
+      }
+
+      function rand(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      let length = 500;
+      let moveOffset = 20;
+
+      for (var i = 0; i < length; i++) {
+        ctx.fillStyle = 'rgba(' + (255 - (length / 2)) + ', 0, ' + (255 - (length / 2)) + ', 0.9';
+        ctx.beginPath();
+        ctx.moveTo(moveOffset, moveOffset);
+        ctx.lineTo(moveOffset + length, moveOffset);
+        let triHeight = (length / 2) * Math.tan(degToRad(60));
+        ctx.lineTo(moveOffset + (length / 2), moveOffset + triHeight);
+        ctx.lineTo(moveOffset, moveOffset);
+        ctx.fill();
+
+        length--;
+        moveOffset += 0.7;
+        ctx.rotate(degToRad(5));
+      }
 
     </script>
   </body>
