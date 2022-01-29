@@ -4,11 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
+    <canvas class="myCanvas">
+      <p>Your browser doesn't support canvas</p>
+    </canvas>
 
     <script>
-    
+      const canvas = document.querySelector('.myCanvas');
+      let width; 
+      let height;
+
+      const ctx = canvas.getContext('2d');
+
+      function handleResize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      handleResize();
+      window.addEventListener('resize', handleResize);
     </script>
   </body>
 </html>
